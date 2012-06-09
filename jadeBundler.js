@@ -17,13 +17,14 @@ module.exports = {
     var viewObj = this.views;
 
     // Read views dir
-    fs.readdirSync(viewDir).forEach(function eachFilePath (filePath) {
+    fs.readdirSync(viewDir).forEach(function eachFilePath (fileName) {
 
       // Populate viewObj object with jade function
-      var fileContents = fs.readFileSync(viewDir + '/' + filePath);
+      var filePath = path.join(viewDir, fileName),
+          fileContents = fs.readFileSync();
 
       // Extract filename without extension (to be used as key)
-      var template = path.basename(filePath, '.jade');
+      var template = path.basename(fileName, '.jade');
 
       // Compile template and store it in the view object
       viewObj[template] = jade.compile(fileContents, {client: true});
