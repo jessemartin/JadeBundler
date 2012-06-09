@@ -2,21 +2,6 @@ var jade = require('jade'),
   fs = require('fs'),
   path = require('path');
 
-
-// Returns length of an object
-function getArrLen (obj) {
-  var len = 0, key;
-  for (key in obj) {
-
-    // Ensure the attribute is not prototype
-    if (obj.hasOwnProperty(key)) {
-      len++;
-    }
-  }
-  return len;
-}
-
-
 module.exports = {
   'views': {},
   'ship': function (filename) {
@@ -24,7 +9,8 @@ module.exports = {
       view,
       i = 0,
       fileContents = '',
-      length = getArrLen(viewObj);
+      viewKeys = Object.getOwnPropertyNames(viewObj),
+      length = viewKeys.length;
 
     // Reformat views object for define()
     for(view in viewObj) {
@@ -52,7 +38,7 @@ module.exports = {
 
       // Populate viewObj object with jade function
       var fileContents = fs.readFileSync(viewDir + '/' + filePath);
-      
+
       // Extract filename without extension (to be used as key)
       var template = path.basename(filePath, '.jade');
 
