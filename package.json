@@ -1,15 +1,15 @@
 {
   "author": "Jesse Martin <jessemar10@gmail.com>",
-  "name": "JadeBundler",
-  "description": "Server-side Jade Templating",
+  "name": "JadeBundler Demo",
+  "description": "Demo for Server-side Jade Templating",
   "version": "0.1.0",
   "repository": {
-    "url": ""
+    "url": "https://github.com/jessemartin/JadeBundler.git"
   },
   "dependencies": {
     "express": "2.5.x",
-    "jade": "0.26.x"
-    },
+    "jadeBundler": "*"
+  },
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
