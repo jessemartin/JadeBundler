@@ -1,0 +1,22 @@
+{
+  "author": "Jesse Martin <jessemar10@gmail.com>",
+  "name": "JadeBundler",
+  "description": "Server-side Jade Templating",
+  "version": "0.1.0",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {
+    "express": "2.5.x",
+    "jade": "0.26.x"
+    },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js"
+}
