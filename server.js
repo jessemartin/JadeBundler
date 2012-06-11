@@ -1,6 +1,5 @@
 var express = require('express'),
   server = express.createServer(),
-  jade = require('jade'),
   fs = require('fs'),
   jadeBundler = require('./jadeBundler');
 
