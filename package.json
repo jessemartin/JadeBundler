@@ -1,6 +1,6 @@
 {
   "author": "Jesse Martin <jessemar10@gmail.com>",
-  "name": "JadeBundler Demo",
+  "name": "JadeBundler",
   "description": "Demo for Server-side Jade Templating",
   "version": "0.1.0",
   "repository": {
