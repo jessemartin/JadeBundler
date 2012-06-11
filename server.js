@@ -1,7 +1,7 @@
 var express = require('express'),
   server = express.createServer(),
   fs = require('fs'),
-  jadeBundler = require('./jadeBundler');
+  jadeBundler = require('jadeBundler');
 
 // Compile specific views
 jadeBundler.bundle(process.cwd() + '/templates');
@@ -10,7 +10,7 @@ jadeBundler.bundle(process.cwd() + '/templates');
 // jadeBundler.compile(process.cwd() + '/node_modules/ensPrivacyUserInterface/public/templates');
 
 // Define and export the views
-jadeBundler.ship('./public/js/allViews.js');
+jadeBundler.exportJson('./public/js/allViews.js');
 
 server.use(express.staticCache());
 server.use(express['static'](process.cwd() + '/public'));
