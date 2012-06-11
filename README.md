@@ -4,7 +4,9 @@ JadeBundler
 A lightweight server-side jade compilation framework
 
 Example
-```require(['js/runtime', 'js/allViews'], function (runtime, allViews) {
+-------
+```javascript
+require(['js/runtime', 'js/allViews'], function (runtime, allViews) {
   var view;
 
   // Iterate over views
@@ -26,3 +28,4 @@ Example
     window.location = 'http://www.toddwolfson.com';
   };
 });
+```
