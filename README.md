@@ -16,16 +16,10 @@ require(['js/runtime', 'js/allViews'], function (runtime, allViews) {
     var div = document.createElement('div');
     
     // Set its content to this invoked view function
-    div.innerHTML = allViews[view]({'name': 'Jesse'});
+    div.innerHTML = allViews[view]({'name': 'Fred'});
 
     // Append it to the body
     document.body.appendChild(div);
   }
-
-  // Heh
-  document.getElementById('lol').onclick = function (evt) {
-    evt.preventDefault();
-    window.location = 'http://www.toddwolfson.com';
-  };
 });
 ```
