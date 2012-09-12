@@ -4,7 +4,7 @@ var express = require('express'),
   jadeBundler = require('jadeBundler');
 
 // Compile specific views
-jadeBundler.bundle(process.cwd() + '/templates');
+jadeBundler.bundle(__dirname + '/templates');
 
 // Compile other views
 // jadeBundler.compile(process.cwd() + '/node_modules/other_view_directory');
@@ -13,8 +13,8 @@ jadeBundler.bundle(process.cwd() + '/templates');
 jadeBundler.exportJson('./public/js/allViews.js');
 
 server.use(express.staticCache());
-server.use(express['static'](process.cwd() + '/public'));
-server.use(express['static'](process.cwd() + '/node_modules/jade'));
+server.use(express['static'](__dirname + '/public'));
+server.use(express['static'](__dirname + '/node_modules/jade'));
 
 server.get('/', function (req, res) {
   res.sendfile('./public/index.html');
