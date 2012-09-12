@@ -1,23 +1,71 @@
-var express = require('express'),
-  server = express(),
+var jade = require('jade'),
   fs = require('fs'),
-  jadeBundler = require('jadeBundler');
+  path = require('path');
 
-// Compile specific views
-jadeBundler.bundle(__dirname + '/templates');
+module.exports = {
+  'views': {},
+  // Export the current views as a JSON object
+  'exportJson': function () {
+    var viewObj = this.views,
+      viewNames = Object.getOwnPropertyNames(viewObj);
+      viewArr = viewNames.map(function (viewName) {
+        var escName,
+          viewFn = viewObj[viewName],
 
-// Compile other views
-// jadeBundler.compile(process.cwd() + '/node_modules/other_view_directory');
+        // Convert it to a string
+        viewStr = viewFn.toString();
 
-// Define and export the views
-jadeBundler.exportJson('./public/js/allViews.js');
+        // Remove the 'anonymous' name from the function
+        viewStr = viewStr.replace(/function\s+anonymous\(/, 'function (');
 
-server.use(express.staticCache());
-server.use(express['static'](__dirname + '/public'));
-server.use(express['static'](__dirname + '/node_modules/jade'));
+        // Escape and wrap the viewName in quotes
+        escName = JSON.stringify(viewName);
 
-server.get('/', function (req, res) {
-  res.sendfile('./public/index.html');
-});
+        // Return the key-value pair of viewStr
+        return escName + ':' + viewStr;
+      }),
+      viewJson = '{' + viewArr.join(',') + '}';
 
-server.listen(8080);
+    // Return the JSON with functions
+    return viewJson;
+  },
+  // Helper method that writes a file for require.js
+  // TODO: Figure out how to make this better (should have a set of engines)
+  // TODO: Minify the output code (have a config on module.exports for that)
+  'writeTo': function (filename) {
+    var viewJson = this.exportJson();
+
+    // Create views file
+    fs.writeFileSync(filename, 'define(' + viewJson + ');', 'utf8');
+  },
+  // 'add': function (view) {
+    // // Detect if the view is a file or a directory
+      // // and use the appropriate method
+  // },
+  // 'addFile': function (viewPath) {
+    // TODO: Use the 'eachFilePath' function from 'bundle'
+
+  // },
+  // 'addDir': function (viewDir) {
+  'bundle': function (viewDir) {
+    var viewObj = this.views;
+
+    // Read views dir
+    // TODO: Use this.addFile
+    fs.readdirSync(viewDir).forEach(function eachFilePath (fileName) {
+
+      // Populate viewObj object with jade function
+      var filePath = path.join(viewDir, fileName),
+          fileContents = fs.readFileSync(filePath, 'utf8');
+
+      // Extract filename without extension (to be used as key)
+      var template = path.basename(fileName, '.jade');
+
+      // Compile template and store it in the view object
+      viewObj[template] = jade.compile(fileContents, {client: true});
+    });
+
+    // Return the JSON object
+    return viewObj;
+  }
+};
