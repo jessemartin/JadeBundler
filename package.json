@@ -10,7 +10,7 @@
     "url": "https://github.com/jessemartin/JadeBundler.git"
   },
   "dependencies": {
-    "jade": "*"
+    "jade": "~0.28.1"
   },
   "devDependencies": {
     "vows": "*"
@@ -22,15 +22,5 @@
   "scripts": {
     "test": "vows"
   },
-  "main": "jadeBundler.js",
-  "_npmUser": {
-    "name": "jesseMartin",
-    "email": "jessemar10@gmail.com"
-  },
-  "_id": "jadeBundler@0.1.0",
-  "_engineSupported": true,
-  "_npmVersion": "1.1.4",
-  "_nodeVersion": "v0.6.17",
-  "_defaultsLoaded": true,
-  "_from": "jadeBundler@*"
+  "main": "jade-bundler.js"
 }
