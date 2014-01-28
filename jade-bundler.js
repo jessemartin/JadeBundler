@@ -7,7 +7,7 @@ module.exports = {
   // Export the current views as a JSON object
   'exportJson': function () {
     var viewObj = this.views,
-      viewNames = Object.getOwnPropertyNames(viewObj);
+      viewNames = Object.getOwnPropertyNames(viewObj),
       viewArr = viewNames.map(function (viewName) {
         var escName,
           viewFn = viewObj[viewName],
